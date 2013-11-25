@@ -18,6 +18,9 @@ def iterate_images_folder(dirname):
         if os.path.isdir(image_dir):
             for image_name in os.listdir(image_dir):
                 image_path = root(dirname, number, image_name)
-                image_file = Image.open(image_path)
-                image_file = image_file.resize(FILE_SIZE)
-                yield number, image_name, image_file
+                try:
+                    image_file = Image.open(image_path)
+                    image_file = image_file.resize(FILE_SIZE)
+                    yield number, image_name, image_file
+                except:
+                    pass
