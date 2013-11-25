@@ -1,0 +1,4 @@
+
+THRESHOLD = 70
+FILE_SIZE = (150, 200)
+IMAGES_FOLDER = 'images'
