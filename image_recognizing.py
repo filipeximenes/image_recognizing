@@ -30,17 +30,20 @@ def process_and_save_averages(source_dir, dest_dir):
 
     averages = calculate_image_averages(images_dict)
     
-    save_dir = root(dest_dir)
-    if not os.path.exists(save_dir):
-        os.makedirs(save_dir)
-
     for key in averages:
+        save_dir = root(dest_dir, key)
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
         averages[key].save(root(save_dir, key + '.jpg'))
 
 
 def main(*args):
-    kind = sys.argv[1]
-    main_dir = sys.argv[2]
+    if len(sys.argv) >= 3:
+        kind = sys.argv[1]
+        main_dir = sys.argv[2]
+
+    if len(sys.argv) >= 4:
+        test_dir = sys.argv[3]
 
     processed_dir = main_dir + '_processed'
     averages_dir = main_dir + '_average'

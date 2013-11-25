@@ -65,3 +65,19 @@ def calculate_image_averages(images_dict):
         averages[key] = average_from_list(images_dict[key])
 
     return averages
+
+
+def calculate_ditance(img1, img2):
+    width, height = img1.size
+
+    dist = 0
+
+    for x in range(width):
+        for y in range(height):
+            point = (x, y)
+            pixel1 = img1.getpixel(point)
+            pixel2 = img2.getpixel(point)
+
+            dist += abs(pixel1 - pixel2)
+    
+    return dist
