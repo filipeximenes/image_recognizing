@@ -18,31 +18,34 @@ def get_average_images(dirname):
     return averages
 
 
-def iterate_over_test_images():
+def recognize_number_in_image(image, averages):
+    recognized_number = None
+    best_distance = float("inf")
 
+    for number in averages:
+        distance = calculate_ditance(image, averages[number])
+
+        if distance < best_distance:
+            best_distance = distance
+            recognized_number = number
+
+    return recognized_number
+
+
+def iterate_over_test_images():
     averages = get_average_images('trainning_average')
 
     results = {}
 
     for test_number, name, image in iterate_images_folder('tests_processed'):
-
-        distances = {}
-        for number in averages:
-            distances[number] = calculate_ditance(image, averages[number])
-
-        best = float("inf")
-        chosen = 0
-        for number in distances:
-            if distances[number] < best:
-                chosen = number
-                best = distances[number]
+        recognized = recognize_number_in_image(image, averages)
 
         if not test_number in results:
             results[test_number] = {}
             results[test_number]['success'] = 0
             results[test_number]['error'] = 0
 
-        if chosen == test_number:
+        if recognized == test_number:
             results[test_number]['success'] += 1
         else:
             results[test_number]['error'] += 1
