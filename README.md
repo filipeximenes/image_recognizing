@@ -30,11 +30,15 @@ images/
 
 ###Para processar as imagens use:
 
-``python image_recognizing.py process trainning``
+``python recognize.py process trainning``
 
 ``trainning`` pode ser trocado por qualquer nome de diretório dentro da pasta ``images``.
 
 ###Para gerar as médias do conjunto de imagens fornecidas, execute:
 
-``python image_recognizing.py process trainning``
+``python recognize.py process trainning``
+
+###Para fazer todo o processo de treinamento, e comparação dos resultados, execute:
+
+``python recognize.py test_sets trainning tests``
 
