@@ -6,6 +6,7 @@ from image_processing import (
     binarize_image, calculate_image_averages,
 )
 from utils import root, iterate_images_folder
+from recognize import execute_test_set
 
 
 def process_and_save_images(source_dir, dest_dir):
@@ -42,11 +43,13 @@ def main(*args):
         kind = sys.argv[1]
         main_dir = sys.argv[2]
 
+        processed_dir = main_dir + '_processed'
+        averages_dir = main_dir + '_average'
+
     if len(sys.argv) >= 4:
         test_dir = sys.argv[3]
 
-    processed_dir = main_dir + '_processed'
-    averages_dir = main_dir + '_average'
+        test_processed_dir = test_dir + '_processed'
 
     if kind == 'process':
         process_and_save_images(main_dir, processed_dir)
@@ -55,6 +58,18 @@ def main(*args):
             process_and_save_images(main_dir, processed_dir)
 
         process_and_save_averages(processed_dir, averages_dir)
+    elif kind == 'test_sets':
+        if not os.path.exists(root(processed_dir)):
+            process_and_save_images(main_dir, processed_dir)
+
+        if not os.path.exists(root(averages_dir)):
+            process_and_save_averages(processed_dir, averages_dir)
+
+        if not os.path.exists(root(test_processed_dir)):
+            process_and_save_images(test_dir, test_processed_dir)
+
+        results = execute_test_set(averages_dir, test_processed_dir)
+        print results
 
 
 if __name__ == '__main__':

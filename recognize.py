@@ -32,12 +32,12 @@ def recognize_number_in_image(image, averages):
     return recognized_number
 
 
-def iterate_over_test_images():
-    averages = get_average_images('trainning_average')
+def execute_test_set(trainning_patterns_dir, test_set_dir):
+    averages = get_average_images(trainning_patterns_dir)
 
     results = {}
 
-    for test_number, name, image in iterate_images_folder('tests_processed'):
+    for test_number, name, image in iterate_images_folder(test_set_dir):
         recognized = recognize_number_in_image(image, averages)
 
         if not test_number in results:
@@ -50,7 +50,4 @@ def iterate_over_test_images():
         else:
             results[test_number]['error'] += 1
 
-    print results
-
-
-iterate_over_test_images()
+    return results
