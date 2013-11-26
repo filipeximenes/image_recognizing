@@ -6,7 +6,7 @@ from image_processing import (
     binarize_image, calculate_image_averages,
 )
 from utils import root, iterate_images_folder
-from recognize import execute_test_set
+from image_recognition import execute_test_set
 
 
 def process_and_save_images(source_dir, dest_dir):
