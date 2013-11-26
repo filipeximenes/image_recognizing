@@ -36,7 +36,7 @@ images/
 
 ###Para gerar as médias do conjunto de imagens fornecidas, execute:
 
-``python recognize.py process trainning``
+``python recognize.py average trainning``
 
 ###Para fazer todo o processo de treinamento, e comparação dos resultados, execute:
 
