@@ -68,8 +68,9 @@ def main(*args):
         if not os.path.exists(root(test_processed_dir)):
             process_and_save_images(test_dir, test_processed_dir)
 
-        results = execute_test_set(averages_dir, test_processed_dir)
-        print results
+        confusion, probabilities = execute_test_set(averages_dir, test_processed_dir)
+        print confusion
+        print probabilities
 
 
 if __name__ == '__main__':
